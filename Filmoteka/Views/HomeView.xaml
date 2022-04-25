@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Filmoteka.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Filmoteka.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#303036">
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="Auto" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="80 20 60 40" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Wprowadzanie filmów" Style="{StaticResource Buttons}" Command="{Binding NavigateInsertPanelCommand}">
+                <Button.Resources>
+                    <Style BasedOn="{StaticResource ButtonBorder}" TargetType="Border"></Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="1" Content="Usuń zaznaczony film" Style="{StaticResource Buttons}" Command="{Binding DeleteSelectedFilm}">
+                <Button.Resources>
+                    <Style BasedOn="{StaticResource ButtonBorder}" TargetType="Border"></Style>
+                </Button.Resources>
+            </Button>
+            <Button Grid.Column="2" Content="Odśwież" Style="{StaticResource Buttons}" Command="{Binding NavigateHomeCommand}">
+                <Button.Resources>
+                    <Style BasedOn="{StaticResource ButtonBorder}" TargetType="Border"></Style>
+                </Button.Resources>
+            </Button>
+        </Grid>
+        <Grid Row="1" Margin="20 0 40 0">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" Height="Auto">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource ListHeaders}" Width="150" Margin="30 0 0 0 ">Tytuł</TextBlock>
+                        <TextBlock Style="{StaticResource ListHeaders}" Width="200">Reżyser</TextBlock>
+                        <TextBlock Style="{StaticResource ListHeaders}" Width="110">Rok produkcji</TextBlock>
+                        <TextBlock Style="{StaticResource ListHeaders}" Width="120">Gatunek</TextBlock>
+                        <TextBlock Style="{StaticResource ListHeaders}" Width="100">Moja ocena</TextBlock>
+                    </StackPanel>
+
+                    <ListView ItemsSource="{Binding Films}" SelectedItem="{Binding SelectedFilm}" SelectionMode="Single" Background="#303036" >
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Background" Value="#303036"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Margin="0 8 0 8" Padding="6 6 0 6" Height="Auto" Background="#9E829C" CornerRadius="8">
+                                    <StackPanel Margin="20 0 0 0" Orientation="Horizontal">
+                                        <TextBlock Style ="{StaticResource ListItems}" Text="{Binding Title}" Width="150"></TextBlock>
+                                        <TextBlock Style ="{StaticResource ListItems}" Text="{Binding Director}" Width="200" ></TextBlock>
+                                        <TextBlock Style ="{StaticResource ListItems}" Text="{Binding ProductionYear}" Width="110" ></TextBlock>
+                                        <TextBlock Style ="{StaticResource ListItems}" Text="{Binding Genre}" Width="120"  ></TextBlock>
+                                        <TextBlock Style ="{StaticResource ListItems}" Text="{Binding Rating}" Width="100"  ></TextBlock>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

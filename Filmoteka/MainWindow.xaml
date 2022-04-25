@@ -1,0 +1,23 @@
+﻿<mah:MetroWindow x:Class="Filmoteka.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 xmlns:local="clr-namespace:Filmoteka"
+                 xmlns:viewmodels="clr-namespace:Filmoteka.ViewModels"
+                 xmlns:views="clr-namespace:Filmoteka.Views"
+                 mc:Ignorable="d"
+                 Title="Filmoteka" Height="450" Width="800"
+                 WindowTitleBrush="#291528">
+    <ContentControl Content="{Binding CurrentViewModel}">
+        <ContentControl.Resources>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:InsertPanelViewModel}">
+                <views:InsertPanelView />
+            </DataTemplate>
+        </ContentControl.Resources>
+    </ContentControl>
+</mah:MetroWindow>
